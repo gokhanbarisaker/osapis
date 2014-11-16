@@ -11,6 +11,9 @@ public class DeviceUtilities
      * Variables
      */
 
+    /**
+     * Singleton instance
+     */
     private static Device currentDevice = null;
 
 
@@ -18,6 +21,11 @@ public class DeviceUtilities
      * Instance providers
      */
 
+    /**
+     * Singleton device instance provider
+     *
+     * @return Device instance for current process
+     */
     public static synchronized Device getCurrentDevice()
     {
         if (currentDevice == null)

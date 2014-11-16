@@ -14,7 +14,7 @@ public class Battery
      * Provider for available battery percentage that is broadcast-ed within most recent sticky intent
      *
      * @param context Context instance
-     * @return A value between 1 and 0 (1>= percentage >=0), where 1 is full and 0 is empty.
+     * @return A value between 1 and 0 (1&gt;= percentage &gt;=0), where 1 is full and 0 is empty.
      */
     public float getCurrentLevel(Context context)
     {

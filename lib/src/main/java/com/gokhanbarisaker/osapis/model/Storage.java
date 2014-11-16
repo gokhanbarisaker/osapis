@@ -24,10 +24,16 @@ public class Storage
      * Accessors
      */
 
+    /**
+     * @return File instance with storage mount point.
+     */
     public File getMountPoint() {
         return mountPoint;
     }
 
+    /**
+     * @param mountPoint New mount point for storage
+     */
     public void setMountPoint(File mountPoint) {
         this.mountPoint = mountPoint;
     }
@@ -53,7 +59,9 @@ public class Storage
         }
         else
         {
+            //noinspection deprecation
             blockSize = stat.getBlockSize();
+            //noinspection deprecation
             availableBlocks = stat.getAvailableBlocks();
         }
 
@@ -77,7 +85,9 @@ public class Storage
         }
         else
         {
+            //noinspection deprecation
             blockSize = stat.getBlockSize();
+            //noinspection deprecation
             totalBlocks = stat.getBlockCount();
         }
 
@@ -85,7 +95,7 @@ public class Storage
     }
 
     /**
-     * Checks whether current storage is available with read & write permissions
+     * Checks whether current storage is available with read &amp; write permissions
      * TODO: If necessary, we might add read only storage check within another method
      *
      * @return True, if current storage mount point is available. False, otherwise.
