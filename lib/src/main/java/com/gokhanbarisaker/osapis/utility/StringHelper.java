@@ -11,15 +11,15 @@ public class StringHelper
     {
         // Check for null or empty ("") value
 
-        if (TextUtils.isEmpty(s))
+        int length;
+
+        if (s == null || (length = s.length()) == 0)
         {
             return true;
         }
 
 
         // Check for whitespace characters
-
-        final int length = s.length();
 
         for (int i = 0; i < length; i++)
         {
