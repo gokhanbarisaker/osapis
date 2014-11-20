@@ -3,7 +3,7 @@ apply plugin: 'signing'
 
 def groupId = "com.gokhanbarisaker"
 def artifactId = "osapis"
-def version = "0.0.1"
+def version = "0.0.2"
 def localReleaseDest = "${buildDir}/release/${version}"
 
 task androidJavadocs(type: Javadoc) {
