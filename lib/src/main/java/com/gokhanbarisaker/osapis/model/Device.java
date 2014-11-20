@@ -3,12 +3,11 @@ package com.gokhanbarisaker.osapis.model;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.view.Window;
 
 import com.gokhanbarisaker.osapis.utility.StringHelper;
 
@@ -103,5 +102,10 @@ public class Device
         TelephonyManager manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
         String carrierName = manager.getSimOperator();
         return carrierName.toLowerCase();
+    }
+
+    public Keyboard getKeyboard()
+    {
+        return new Keyboard();
     }
 }
