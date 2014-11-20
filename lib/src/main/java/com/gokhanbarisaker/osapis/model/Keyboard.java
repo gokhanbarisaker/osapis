@@ -13,6 +13,26 @@ import java.lang.ref.WeakReference;
  */
 public class Keyboard
 {
+    /**
+     * Shows keyboard for specific view
+     *
+     * @param view to show keyboard
+     */
+    public void show(final View view)
+    {
+        Context context = view.getContext();
+
+        InputMethodManager imm = (InputMethodManager)context.getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+
+    /**
+     * Hides keyboard for specific view.
+     *
+     * @param view to hide keyboard
+     */
     public void hide(final View view)
     {
         Context context = view.getContext();
@@ -22,13 +42,14 @@ public class Keyboard
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public void show(final View view)
+    /**
+     * Hides keyboard from window
+     *
+     * @param window host for keyboard
+     */
+    public void hide(final Window window)
     {
-        Context context = view.getContext();
-
-        InputMethodManager imm = (InputMethodManager)context.getSystemService(
-                Context.INPUT_METHOD_SERVICE);
-
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        window.setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 }
