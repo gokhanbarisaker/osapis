@@ -7,9 +7,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
-import android.view.Window;
 
-import com.gokhanbarisaker.osapis.utility.StringHelper;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 
@@ -27,15 +26,6 @@ public class Device
      */
     public String getName()
     {
-        return getName(new StringHelper());
-    }
-
-    /**
-     * @param helper Utility for string operations
-     * @return Device name, that defined in Build environment
-     */
-    public String getName(StringHelper helper)
-    {
         String deviceName = null;
 
         String manufacturer = Build.MANUFACTURER;
@@ -43,11 +33,11 @@ public class Device
 
         if (model.startsWith(manufacturer))
         {
-            deviceName = helper.capitalize(model);
+            deviceName = StringUtils.capitalize(model);
         }
         else
         {
-            deviceName = helper.capitalize(manufacturer) + " " + model;
+            deviceName = StringUtils.capitalize(manufacturer) + " " + model;
         }
 
         return deviceName;
