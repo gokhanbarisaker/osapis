@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gokhanbarisaker.osapissample" >
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -15,6 +17,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.gokhanbarisaker.osapissample.KeyboardActivity"
+            android:label="@string/title_activity_keyboard"
+            android:parentActivityName="com.gokhanbarisaker.osapissample.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.gokhanbarisaker.osapissample.DeviceStatusActivity"
+            android:label="@string/title_activity_device_status"
+            android:parentActivityName="com.gokhanbarisaker.osapissample.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.gokhanbarisaker.osapissample.ShareActivity"
+            android:label="@string/title_activity_share"
+            android:parentActivityName="com.gokhanbarisaker.osapissample.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
         </activity>
     </application>
 

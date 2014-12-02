@@ -1,0 +1,49 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gokhanbarisaker.osapissample.ShareActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/share_pager"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"/>
+        
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="96dp"></android.support.v4.view.ViewPager>
+
+        <Button
+            android:id="@+id/share_tweet_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Tweet" />
+
+        <Button
+            android:id="@+id/share_facebook_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Post to facebook" />
+
+        <Button
+            android:id="@+id/share_googleplus_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Share with Google+" />
+
+        <Button
+            android:id="@+id/share_whatsapp_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Send with whatsapp" />
+
+    </LinearLayout>
+
+
+</ScrollView>

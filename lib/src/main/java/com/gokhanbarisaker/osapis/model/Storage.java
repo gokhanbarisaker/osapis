@@ -104,4 +104,18 @@ public class Storage
     {
         return EnvironmentCompat.getStorageState(getMountPoint()).equals(Environment.MEDIA_MOUNTED);
     }
+
+    @Override
+    public String toString()
+    {
+        return new StringBuffer()
+                .append("Storage is ")
+                .append((isAvailable())?"available":"not available")
+                .append(", ")
+                .append(getAvailableBytes())
+                .append('/')
+                .append(getTotalBytes())
+                .append(" bytes")
+                .toString();
+    }
 }
