@@ -19,8 +19,6 @@ public class ShareActivity extends ActionBarActivity {
 
     private ViewPager pager = null;
 
-    ViewPager
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
