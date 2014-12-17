@@ -2,15 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gokhanbarisaker.osapissample" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.gokhanbarisaker.osapissample.MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,29 +20,35 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.gokhanbarisaker.osapissample.KeyboardActivity"
+            android:name=".activity.KeyboardActivity"
             android:label="@string/title_activity_keyboard"
-            android:parentActivityName="com.gokhanbarisaker.osapissample.MainActivity" >
+            android:parentActivityName=".activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.gokhanbarisaker.osapissample.DeviceStatusActivity"
+            android:name=".activity.DeviceStatusActivity"
             android:label="@string/title_activity_device_status"
-            android:parentActivityName="com.gokhanbarisaker.osapissample.MainActivity" >
+            android:parentActivityName=".activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name="com.gokhanbarisaker.osapissample.ShareActivity"
+            android:name=".activity.ShareActivity"
             android:label="@string/title_activity_share"
-            android:parentActivityName="com.gokhanbarisaker.osapissample.MainActivity" >
+            android:parentActivityName=".activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
+
+        <service
+            android:name=".service.FlickrService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>

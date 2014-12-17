@@ -1,20 +1,11 @@
-package com.gokhanbarisaker.osapissample;
+package com.gokhanbarisaker.osapissample.activity;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 
 import com.gokhanbarisaker.osapissample.R;
-import com.gokhanbarisaker.osapis.model.Keyboard;
-import com.gokhanbarisaker.osapis.utility.DeviceUtilities;
 
 
 public class MainActivity extends ActionBarActivity {
