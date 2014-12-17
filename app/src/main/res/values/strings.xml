@@ -7,5 +7,6 @@
     <string name="title_activity_keyboard">KeyboardActivity</string>
     <string name="title_activity_device_status">DeviceStatusActivity</string>
     <string name="title_activity_share">ShareActivity</string>
+    <string name="title_activity_camera">CameraActivity</string>
 
 </resources>
