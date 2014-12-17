@@ -3,44 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gokhanbarisaker.osapissample.ShareActivity">
+    tools:context="com.gokhanbarisaker.osapissample.activity.ShareActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="8dp">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/share_pager"
             android:layout_width="match_parent"
-            android:layout_height="240dp"/>
-        
-        <android.support.v4.view.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="96dp"></android.support.v4.view.ViewPager>
+            android:layout_height="320dp"/>
 
         <Button
             android:id="@+id/share_tweet_button"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
             android:text="Tweet" />
 
         <Button
             android:id="@+id/share_facebook_button"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
             android:text="Post to facebook" />
 
         <Button
             android:id="@+id/share_googleplus_button"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
             android:text="Share with Google+" />
 
         <Button
             android:id="@+id/share_whatsapp_button"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
             android:text="Send with whatsapp" />
 
     </LinearLayout>

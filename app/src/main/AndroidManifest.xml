@@ -5,12 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,28 +20,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".KeyboardActivity"
+            android:name=".activity.KeyboardActivity"
             android:label="@string/title_activity_keyboard"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name=".DeviceStatusActivity"
+            android:name=".activity.DeviceStatusActivity"
             android:label="@string/title_activity_device_status"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name=".ShareActivity"
+            android:name=".activity.ShareActivity"
             android:label="@string/title_activity_share"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".activity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.gokhanbarisaker.osapissample.MainActivity" />
+                android:value=".activity.MainActivity" />
         </activity>
 
         <service
