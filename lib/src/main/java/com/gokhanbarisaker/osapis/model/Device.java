@@ -3,14 +3,18 @@ package com.gokhanbarisaker.osapis.model;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.os.Build;
-import android.os.Environment;
+import android.os.*;
+import android.os.Process;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
 import java.io.File;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * Created by gokhanbarisaker on 18/07/14.
@@ -97,5 +101,25 @@ public class Device
     public Keyboard getKeyboard()
     {
         return new Keyboard();
+    }
+
+    /**
+     * TODO: Re-decide if we got to keep the method here, or not!
+     *
+     * @return
+     */
+    public Executor getOptimalThreadExecutor(final int priority)
+    {
+        final int availableProcessors = Runtime.getRuntime().availableProcessors();
+        final ThreadFactory backgroundThreadFactory = new BasicThreadFactory.Builder()
+                .priority(priority)
+                .build();
+
+        return Executors.newFixedThreadPool(availableProcessors, backgroundThreadFactory);
+    }
+
+    public Executor getBackgroundThreadExecutor()
+    {
+        return getOptimalThreadExecutor(Process.THREAD_PRIORITY_BACKGROUND);
     }
 }
