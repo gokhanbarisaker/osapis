@@ -105,8 +105,8 @@ public class Device
 
     /**
      * TODO: Re-decide if we got to keep the method here, or not!
-     *
-     * @return
+     * @param priority for running thread instances within executor.
+     * @return Executor instance optimized for current device processors.
      */
     public Executor getOptimalThreadExecutor(final int priority)
     {
@@ -118,6 +118,10 @@ public class Device
         return Executors.newFixedThreadPool(availableProcessors, backgroundThreadFactory);
     }
 
+    /**
+     *
+     * @return Executor instance, with background priority, optimized for current device processors.
+     */
     public Executor getBackgroundThreadExecutor()
     {
         return getOptimalThreadExecutor(Process.THREAD_PRIORITY_BACKGROUND);
