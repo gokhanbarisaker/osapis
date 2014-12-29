@@ -2,7 +2,6 @@ package com.gokhanbarisaker.osapis.utility;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;

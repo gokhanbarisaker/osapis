@@ -3,19 +3,13 @@ package com.gokhanbarisaker.osapis.utility;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.ImageFormat;
-import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.os.Build;
 import android.util.Log;
-import android.util.Size;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.WindowManager;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -119,22 +113,25 @@ public class CameraUtilities
         return openCamera(Camera.CameraInfo.CAMERA_FACING_FRONT);
     }
 
-    public void captureImage(final Activity context, final Camera camera, final Camera.PictureCallback callback)
+    public void captureImage(final SurfaceHolder holder, final Camera camera, final Camera.PictureCallback callback)
     {
-        if (camera != null && context != null)
+        if (camera != null && holder != null)
         {
             Camera.Parameters cameraParameters = camera.getParameters();
             cameraParameters.setPictureFormat(ImageFormat.JPEG);
 
             List<Camera.Size> pictureSizes = cameraParameters.getSupportedPictureSizes();
-            Camera.Size optimalPicture = pictureSizes.get(pictureSizes.size() - 1);
+            Camera.Size optimalPicture = getOptimalPreviewSize(pictureSizes, camera.getParameters().getPictureSize());
             cameraParameters.setPictureSize(optimalPicture.width, optimalPicture.height);
+
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
+            {
+                holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+            }
 
             try
             {
-                final SurfaceView dummy = createSurfaceView(context);
-
-                camera.setPreviewDisplay(dummy.getHolder());
+                camera.setPreviewDisplay(holder);
                 camera.startPreview();
 
                 camera.takePicture(null, null, callback);
@@ -150,7 +147,7 @@ public class CameraUtilities
         }
     }
 
-    public boolean streamCameraPreview(Context context, final Camera camera, int format, final Camera.PreviewCallback callback)
+    public boolean streamCameraPreview(final SurfaceHolder holder, final Camera camera, int format, final Camera.PreviewCallback callback)
     {
         boolean streamStarted = false;
 
@@ -168,19 +165,26 @@ public class CameraUtilities
                     cameraParameters.setPreviewFormat(format);
 
                     List<Camera.Size> previewSizes = cameraParameters.getSupportedPreviewSizes();
-                    Camera.Size optimalPreviewSize = previewSizes.get(previewSizes.size() / 2);
+                    Camera.Size optimalPreviewSize = getOptimalPreviewSize(previewSizes, camera.getParameters().getPictureSize());
                     cameraParameters.setPreviewSize(optimalPreviewSize.width, optimalPreviewSize.height);
 
                     camera.setParameters(cameraParameters);
 
-                    SurfaceView dummy = createSurfaceView(context);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
+                    {
+                        holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+                    }
 
-                    camera.setPreviewDisplay(dummy.getHolder());
+                    camera.setPreviewDisplay(holder);
                     camera.startPreview();
 
                     camera.setPreviewCallback(callback);
 
                     streamStarted = true;
+                }
+                else
+                {
+                    Log.i(CameraUtilities.class.getSimpleName(), format + " format not supported for camera preview on this device");
                 }
             }
             catch (Exception e)
@@ -214,14 +218,18 @@ public class CameraUtilities
         int minHeightDeviation = Integer.MAX_VALUE;
 
         // Try to find an size match aspect ratio and size
+        float ratio = .0f;
+        int heightDeviation = 0;
+
         for (Camera.Size size : sizes) {
-            double ratio = (double) size.width / size.height;
+            ratio = (float) size.width / (float) size.height;
 
             if (Math.abs(ratio - targetRatio) <= maxRatioTolerance)
             {
-                int heightDeviation = Math.abs(size.height - targetSize.height);
+                heightDeviation = Math.abs(size.height - targetSize.height);
 
-                if (heightDeviation < minHeightDeviation) {
+                if (heightDeviation < minHeightDeviation)
+                {
                     optimalSize = size;
                     minHeightDeviation = heightDeviation;
                 }
