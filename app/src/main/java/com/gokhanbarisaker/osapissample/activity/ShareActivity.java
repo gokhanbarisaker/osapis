@@ -2,8 +2,10 @@ package com.gokhanbarisaker.osapissample.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,11 +15,17 @@ import com.gokhanbarisaker.osapissample.Application;
 import com.gokhanbarisaker.osapissample.R;
 import com.gokhanbarisaker.osapissample.adapter.ShareFragmentStatePagerAdapter;
 import com.gokhanbarisaker.osapissample.model.Photo;
+import com.gokhanbarisaker.osapissample.service.FlickrService;
+import com.gokhanbarisaker.osapissample.utilities.FlickrUtilities;
 
 import java.util.List;
 
+import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 public class ShareActivity extends ActionBarActivity {
 
@@ -27,6 +35,7 @@ public class ShareActivity extends ActionBarActivity {
     private Subscription flickrSubscription = null;
 
     private int currentPhotoIndex = 0;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,21 +139,32 @@ public class ShareActivity extends ActionBarActivity {
 
         if (pager.getAdapter() == null)
         {
-            Application.flickrService.fetchPhotoList().subscribe(new Subscriber<List<Photo>>() {
+            flickrSubscription =
+            FlickrUtilities.getSharedInstance().fetchPhotoList().subscribe(new Subscriber<List<Photo>>() {
+
                 @Override
                 public void onCompleted() {
+                    Log.e("Foo", "Tier 3");
                     flickrSubscription = null;
                 }
 
                 @Override
                 public void onError(Throwable e) {
+                    Log.e("Foo", "Tier 4", e);
                     flickrSubscription = null;
                 }
 
                 @Override
-                public void onNext(List<Photo> photoList) {
-                    ShareFragmentStatePagerAdapter adapter = new ShareFragmentStatePagerAdapter(getSupportFragmentManager(), photoList);
-                    pager.setAdapter(adapter);
+                public void onNext(final List<Photo> photoList) {
+                    Log.e("Foo", "Tier 5: " + photoList.toString());
+
+                    pager.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            ShareFragmentStatePagerAdapter adapter = new ShareFragmentStatePagerAdapter(getSupportFragmentManager(), photoList);
+                            pager.setAdapter(adapter);
+                        }
+                    });
                 }
             });
         }
@@ -159,6 +179,7 @@ public class ShareActivity extends ActionBarActivity {
         if (subscription != null)
         {
             subscription.unsubscribe();
+            flickrSubscription = null;
         }
     }
 
