@@ -41,6 +41,7 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.1.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.1.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.4'
-    compile 'io.reactivex:rxandroid:0.23.0'
+    compile 'io.reactivex:rxandroid:0.23.+'
+    compile 'io.reactivex:rxjava:1.0.3'
     compile project(':lib')
 }
