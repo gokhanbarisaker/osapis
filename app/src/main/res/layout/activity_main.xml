@@ -9,19 +9,24 @@
     >
 
     <Button
-        android:id="@+id/keyboard_button"
+        android:id="@+id/main_keyboardbutton"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:text="Keyboard"/>
     <Button
-        android:id="@+id/device_status_button"
+        android:id="@+id/main_statusbutton"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:text="Device status"/>
     <Button
-        android:id="@+id/share_button"
+        android:id="@+id/main_sharebutton"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:text="Share"/>
+    <Button
+        android:id="@+id/main_camerabutton"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:text="Camera" />
 
 </LinearLayout>

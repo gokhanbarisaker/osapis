@@ -3,10 +3,19 @@ package com.gokhanbarisaker.osapis.utility;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.ImageFormat;
+import android.graphics.PixelFormat;
 import android.hardware.Camera;
+import android.os.Build;
 import android.util.Log;
+import android.util.Size;
+import android.view.Surface;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.WindowManager;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -118,12 +127,12 @@ public class CameraUtilities
             cameraParameters.setPictureFormat(ImageFormat.JPEG);
 
             List<Camera.Size> pictureSizes = cameraParameters.getSupportedPictureSizes();
-            Camera.Size optimalPicture = pictureSizes.get(0);
+            Camera.Size optimalPicture = pictureSizes.get(pictureSizes.size() - 1);
             cameraParameters.setPictureSize(optimalPicture.width, optimalPicture.height);
 
             try
             {
-                final SurfaceView dummy=new SurfaceView(context);
+                final SurfaceView dummy = createSurfaceView(context);
 
                 camera.setPreviewDisplay(dummy.getHolder());
                 camera.startPreview();
@@ -141,7 +150,7 @@ public class CameraUtilities
         }
     }
 
-    public boolean streamCameraPreview(Context context, Camera camera, int format, Camera.PreviewCallback callback)
+    public boolean streamCameraPreview(Context context, final Camera camera, int format, final Camera.PreviewCallback callback)
     {
         boolean streamStarted = false;
 
@@ -159,12 +168,12 @@ public class CameraUtilities
                     cameraParameters.setPreviewFormat(format);
 
                     List<Camera.Size> previewSizes = cameraParameters.getSupportedPreviewSizes();
-                    Camera.Size optimalPreviewSize = previewSizes.get(0);
+                    Camera.Size optimalPreviewSize = previewSizes.get(previewSizes.size() / 2);
                     cameraParameters.setPreviewSize(optimalPreviewSize.width, optimalPreviewSize.height);
 
                     camera.setParameters(cameraParameters);
 
-                    SurfaceView dummy=new SurfaceView(context);
+                    SurfaceView dummy = createSurfaceView(context);
 
                     camera.setPreviewDisplay(dummy.getHolder());
                     camera.startPreview();
@@ -176,10 +185,49 @@ public class CameraUtilities
             }
             catch (Exception e)
             {
-                Log.i(CameraUtilities.class.getSimpleName(), "Failed to preview image");
+                Log.i(CameraUtilities.class.getSimpleName(), "Failed to preview image", e);
             }
         }
 
         return streamStarted;
+    }
+
+    private SurfaceView createSurfaceView(final Context context)
+    {
+        SurfaceView surfaceView=new SurfaceView(context);
+        SurfaceHolder holder = surfaceView.getHolder();
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
+        {
+            holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        }
+
+        return surfaceView;
+    }
+
+    private Camera.Size getOptimalPreviewSize(final List<Camera.Size> sizes, final Camera.Size targetSize)
+    {
+        final float maxRatioTolerance = 0.1f;
+        final float targetRatio = (float) targetSize.width / (float) targetSize.height;
+
+        Camera.Size optimalSize = sizes.get(0);
+        int minHeightDeviation = Integer.MAX_VALUE;
+
+        // Try to find an size match aspect ratio and size
+        for (Camera.Size size : sizes) {
+            double ratio = (double) size.width / size.height;
+
+            if (Math.abs(ratio - targetRatio) <= maxRatioTolerance)
+            {
+                int heightDeviation = Math.abs(size.height - targetSize.height);
+
+                if (heightDeviation < minHeightDeviation) {
+                    optimalSize = size;
+                    minHeightDeviation = heightDeviation;
+                }
+            }
+        }
+
+        return optimalSize;
     }
 }
