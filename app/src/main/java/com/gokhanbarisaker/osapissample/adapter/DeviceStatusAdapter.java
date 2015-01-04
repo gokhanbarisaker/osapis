@@ -35,7 +35,7 @@ public class DeviceStatusAdapter extends RecyclerView.Adapter<DeviceStatusAdapte
         Device device = DeviceUtilities.getCurrentDevice();
 
         list.add(new DeviceStatus("Name", device.getName()));
-        list.add(new DeviceStatus("Display", device.getDisplayMetrics().toString()));
+        list.add(new DeviceStatus("Display", device.getDisplay().getMetrics().toString()));
         list.add(new DeviceStatus("Battery charge status", Integer.toString(device.getBattery().getChargeStatus(context))));
         list.add(new DeviceStatus("Battery health status", Integer.toString(device.getBattery().getHealthStatus(context))));
         list.add(new DeviceStatus("Battery plug status", Integer.toString(device.getBattery().getPlugStatus(context))));

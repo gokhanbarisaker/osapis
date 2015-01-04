@@ -3,8 +3,10 @@ package com.gokhanbarisaker.osapissample.activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import com.gokhanbarisaker.osapis.utility.DeviceUtilities;
 import com.gokhanbarisaker.osapissample.R;
 
 import rx.Subscription;

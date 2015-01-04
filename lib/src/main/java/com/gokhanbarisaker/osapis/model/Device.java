@@ -50,9 +50,9 @@ public class Device
     /**
      * @return {@code DisplayMetrics} instance for current system.
      */
-    public DisplayMetrics getDisplayMetrics()
+    public Display getDisplay()
     {
-        return Resources.getSystem().getDisplayMetrics();
+        return new Display();
     }
 
     /**
