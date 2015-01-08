@@ -111,6 +111,40 @@ public class ShareActivity extends ActionBarActivity {
             }
         });
 
+        findViewById(R.id.share_instagram_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Photo photo = getCurrentPhoto();
+
+                if (photo == null)
+                {
+                    Toast.makeText(v.getContext(), "No photo found", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent intent = new ShareUtilities().createShareIntentForInstagram(v.getContext(), DeviceUtilities.getCurrentDevice(), photo.getTitle(), photo.getImageUrl());
+                    ShareActivity.this.startActivity(intent);
+                }
+            }
+        });
+
+        findViewById(R.id.share_pinterest_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Photo photo = getCurrentPhoto();
+
+                if (photo == null)
+                {
+                    Toast.makeText(v.getContext(), "No photo found", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Intent intent = new ShareUtilities().createShareIntentForPinterest(v.getContext(), DeviceUtilities.getCurrentDevice(), photo.getTitle(), photo.getImageUrl(), "1442292");
+                    ShareActivity.this.startActivity(intent);
+                }
+            }
+        });
+
         pager = (ViewPager) findViewById(R.id.share_pager);
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

@@ -48,6 +48,22 @@
             android:layout_marginLeft="4dp"
             android:text="Send with whatsapp" />
 
+        <Button
+            android:id="@+id/share_instagram_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:text="Send with instagram" />
+
+        <Button
+            android:id="@+id/share_pinterest_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:text="Pin it" />
+
     </LinearLayout>
 
 
