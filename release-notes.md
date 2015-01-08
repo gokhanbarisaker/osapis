@@ -1,4 +1,20 @@
 
+== 0.2.0 ====================================
+
+  Added
+
+    . Pinterest share APIs.
+    . Instagram share APIs, although not working only with local resources :(.
+    . Display APIs
+    . Ancient camera APIs.
+    
+  Updated
+  
+    . Camera APIs now accept SurfaceHolder itself from user, instead of creating a dummy instance.
+    . Moved display related APIs from Device to Display class && Added status bar height accessor to Display
+  
+
+
 == 0.1.0 ====================================
 
   Updated
