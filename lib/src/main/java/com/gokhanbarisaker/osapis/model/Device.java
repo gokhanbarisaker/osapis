@@ -7,6 +7,7 @@ import android.os.*;
 import android.os.Process;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.webkit.WebView;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
@@ -125,5 +126,47 @@ public class Device
     public Executor getBackgroundThreadExecutor()
     {
         return getOptimalThreadExecutor(Process.THREAD_PRIORITY_BACKGROUND);
+    }
+
+
+
+    /**
+     * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.43">W3 compatible</a>
+     * a user agent string.
+     *
+     * @param label
+     * @param version
+     * @return a unique User-Agent http header value for current application.
+     */
+    public synchronized String getUserAgent(String label, String version)
+    {
+        return new StringBuffer()
+                .append(label)
+                .append("/")
+                .append(version)
+                .append(" (")
+                .append(getName())
+                .append("; Android ")
+                .append(Build.VERSION.SDK_INT)
+                .append("; Scale/")
+                .append(String.format("%.2f", getDisplay().getMetrics().density))
+                .append(")")
+                .toString();
+    }
+
+    /**
+     * Accessor for system-wide, {@code WebView} generated, user agent string.
+     *
+     * @param context
+     * @return {@code WebView} generated user agent string.
+     */
+    public String getWebViewUserAgent(Context context)
+    {
+        if (Looper.myLooper() != Looper.getMainLooper())
+        {
+            throw new IllegalStateException("WebView user-agent must be extracted from main thread!");
+        }
+
+        return (context == null)?(null):(new WebView(context).getSettings().getUserAgentString());
     }
 }
