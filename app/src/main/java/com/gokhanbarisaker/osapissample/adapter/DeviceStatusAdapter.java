@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.gokhanbarisaker.osapis.model.Device;
 import com.gokhanbarisaker.osapis.utility.DeviceUtilities;
+import com.gokhanbarisaker.osapissample.BuildConfig;
 import com.gokhanbarisaker.osapissample.R;
 import com.gokhanbarisaker.osapissample.utilities.RandomColorGenerator;
 
@@ -43,6 +44,8 @@ public class DeviceStatusAdapter extends RecyclerView.Adapter<DeviceStatusAdapte
         list.add(new DeviceStatus("Internal storage", device.getInternalStorage().toString()));
         list.add(new DeviceStatus("External storage", device.getExternalStorage().toString()));
         list.add(new DeviceStatus("Carrier", device.getCarrierName(context)));
+        list.add(new DeviceStatus("User-Agent, custom", device.getUserAgent(BuildConfig.APPLICATION_ID, BuildConfig.VERSION_NAME)));
+        list.add(new DeviceStatus("User-Agent, webview", device.getWebViewUserAgent(context)));
 
         return list;
     }
