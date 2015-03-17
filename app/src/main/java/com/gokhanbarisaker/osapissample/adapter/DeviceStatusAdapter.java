@@ -1,7 +1,9 @@
 package com.gokhanbarisaker.osapissample.adapter;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,7 @@ public class DeviceStatusAdapter extends RecyclerView.Adapter<DeviceStatusAdapte
 
         list.add(new DeviceStatus("Name", device.getName()));
         list.add(new DeviceStatus("Display", device.getDisplay().getMetrics().toString()));
+        list.add(new DeviceStatus("Display", "Layout: " + device.getDisplay().getLayout()));
         list.add(new DeviceStatus("Battery charge status", Integer.toString(device.getBattery().getChargeStatus(context))));
         list.add(new DeviceStatus("Battery health status", Integer.toString(device.getBattery().getHealthStatus(context))));
         list.add(new DeviceStatus("Battery plug status", Integer.toString(device.getBattery().getPlugStatus(context))));

@@ -1,3 +1,12 @@
+== 0.4.0 ====================================
+
+  Added
+
+    . UriQueryParser, for memory efficient alternative for query parameter access
+
+    . Screen layout API to access masked screen size configuration dynamically.
+
+
 
 == 0.3.0 ====================================
 

@@ -1,5 +1,6 @@
 package com.gokhanbarisaker.osapis.model;
 
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
@@ -27,5 +28,10 @@ public class Display
             result = Resources.getSystem().getDimensionPixelSize(resourceId);
         }
         return result;
+    }
+
+    public int getLayout()
+    {
+        return Resources.getSystem().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
     }
 }

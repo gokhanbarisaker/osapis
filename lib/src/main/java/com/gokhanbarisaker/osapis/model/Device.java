@@ -134,8 +134,8 @@ public class Device
      * <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.43">W3 compatible</a>
      * a user agent string.
      *
-     * @param label
-     * @param version
+     * @param label Build label
+     * @param version Build version
      * @return a unique User-Agent http header value for current application.
      */
     public synchronized String getUserAgent(String label, String version)
@@ -157,7 +157,7 @@ public class Device
     /**
      * Accessor for system-wide, {@code WebView} generated, user agent string.
      *
-     * @param context
+     * @param context Context
      * @return {@code WebView} generated user agent string.
      */
     public String getWebViewUserAgent(Context context)
