@@ -2,6 +2,7 @@ package com.gokhanbarisaker.osapissample.activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -11,7 +12,7 @@ import com.gokhanbarisaker.osapis.utility.DeviceUtilities;
 import com.gokhanbarisaker.osapissample.R;
 import com.gokhanbarisaker.osapissample.adapter.DeviceStatusAdapter;
 
-public class DeviceStatusActivity extends ActionBarActivity {
+public class DeviceStatusActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView = null;
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 
-public class ShareActivity extends ActionBarActivity {
+public class ShareActivity extends AppCompatActivity {
 
     private static final String KEY_BUNDLE_PAGER = "shareactivity.bundle.pager";
 

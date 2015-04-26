@@ -2,6 +2,7 @@ package com.gokhanbarisaker.osapissample.activity;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.view.View;
 import com.gokhanbarisaker.osapis.utility.DeviceUtilities;
 import com.gokhanbarisaker.osapissample.R;
 
-public class KeyboardActivity extends ActionBarActivity {
+public class KeyboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

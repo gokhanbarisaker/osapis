@@ -9,6 +9,7 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -21,7 +22,7 @@ import com.gokhanbarisaker.osapissample.R;
 
 import java.io.ByteArrayOutputStream;
 
-public class CameraActivity extends ActionBarActivity {
+public class CameraActivity extends AppCompatActivity {
 
     SurfaceView surfaceView = null;
     Camera camera = null;

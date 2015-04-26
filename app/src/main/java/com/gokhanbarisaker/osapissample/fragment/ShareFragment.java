@@ -72,7 +72,7 @@ public class ShareFragment extends Fragment {
             public void onSuccess() {
                 Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
 
-                Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
+                Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
                     public void onGenerated(Palette palette) {
                         // Do something with colors...
 
