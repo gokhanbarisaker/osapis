@@ -1,3 +1,11 @@
+== 0.4.1 ====================================
+
+  Fixed
+
+    . Non-parsed query pairs with empty value issue
+
+
+
 == 0.4.0 ====================================
 
   Added
