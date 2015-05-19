@@ -43,7 +43,7 @@ public class UriQueryParser {
             {
                 String[] queryPairParts = StringUtils.split(queryPair, '=');
 
-                if (queryPairParts != null && queryPairParts.length == 2) {
+                if (queryPairParts != null) {
                     int queryPairPartsLength = queryPairParts.length;
 
                     if (queryPairPartsLength == 2) {
