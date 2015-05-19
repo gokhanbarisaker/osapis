@@ -1,5 +1,7 @@
 package com.gokhanbarisaker.osapis.utility;
 
+import android.util.Log;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -41,16 +43,32 @@ public class UriQueryParser {
             {
                 String[] queryPairParts = StringUtils.split(queryPair, '=');
 
-                if (queryPairParts != null && queryPairParts.length == 2)
-                {
-                    try
-                    {
-                        String key = URLDecoder.decode(queryPairParts[0], "UTF-8");
-                        String value = URLDecoder.decode(queryPairParts[1], "UTF-8");
+                if (queryPairParts != null && queryPairParts.length == 2) {
+                    int queryPairPartsLength = queryPairParts.length;
 
-                        queryMap.put(key, value);
+                    if (queryPairPartsLength == 2) {
+                        try {
+                            String key = URLDecoder.decode(queryPairParts[0], "UTF-8");
+                            String value = URLDecoder.decode(queryPairParts[1], "UTF-8");
+
+                            queryMap.put(key, value);
+                        } catch (UnsupportedEncodingException e) { /* Ignored */ }
                     }
-                    catch (UnsupportedEncodingException e) { /* Ignored */ }
+                    else if (queryPairPartsLength == 1 && queryPair.endsWith("="))
+                    {
+                        try
+                        {
+                            String key = URLDecoder.decode(queryPairParts[0], "UTF-8");
+                            String value = "";
+
+                            queryMap.put(key, value);
+                        }
+                        catch (UnsupportedEncodingException e) { /* Ignored */ }
+                    }
+                    else
+                    {
+                        Log.e("Query parser", "Unable to split query parameter in parts: " + queryPair);
+                    }
                 }
             }
         }
