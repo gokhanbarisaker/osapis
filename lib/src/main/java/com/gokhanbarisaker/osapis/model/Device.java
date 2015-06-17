@@ -2,11 +2,11 @@ package com.gokhanbarisaker.osapis.model;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.os.*;
+import android.os.Build;
+import android.os.Environment;
+import android.os.Looper;
 import android.os.Process;
 import android.telephony.TelephonyManager;
-import android.util.DisplayMetrics;
 import android.webkit.WebView;
 
 import org.apache.commons.lang3.StringUtils;

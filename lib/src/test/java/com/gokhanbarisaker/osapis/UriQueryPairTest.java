@@ -1,12 +1,8 @@
 package com.gokhanbarisaker.osapis;
 
-import android.os.Parcel;
-
 import com.gokhanbarisaker.osapis.model.UriQueryPair;
-import com.gokhanbarisaker.osapis.utility.UriQueryParser;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
