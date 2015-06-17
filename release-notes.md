@@ -1,3 +1,22 @@
+== 0.5.0 ====================================
+
+  Fixed
+
+    . UriQueryParser by adding support to duplicate key values for better URI compatibility.
+
+    . User agent construction by abstracting string formatting from locale
+
+    . Background thread executor priority
+
+
+  Added
+
+    . UriQueryPair
+
+    . Unit tests for UriQueryParser & UriQueryPair.
+    
+
+
 == 0.4.1 ====================================
 
   Fixed
