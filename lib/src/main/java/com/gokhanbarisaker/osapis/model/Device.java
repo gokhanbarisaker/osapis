@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
-import android.os.Process;
 import android.telephony.TelephonyManager;
 import android.webkit.WebView;
 
@@ -126,7 +125,7 @@ public class Device
      */
     public Executor getBackgroundThreadExecutor()
     {
-        return getOptimalThreadExecutor(Process.THREAD_PRIORITY_BACKGROUND);
+        return getOptimalThreadExecutor(Thread.MIN_PRIORITY + 2);
     }
 
 
