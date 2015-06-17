@@ -2,12 +2,14 @@ package com.gokhanbarisaker.osapis.utility;
 
 import android.util.Log;
 
+import com.gokhanbarisaker.osapis.model.UriQueryPair;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by gokhanbarisaker on 1/6/15.
@@ -15,33 +17,35 @@ import java.util.Map;
 public class UriQueryParser {
 
     /**
-     * Not suitable for repeating query key values, for they will be overwritten in dictionary. e.g.,<br>
+     * Parser for raw/encoded query string<br>
      *<br>
      *  ...?key1=value1&amp;key2=value2&amp;key1=value3<br>
      *<br>
-     *  that will result with loosing the key1. i.e,<br>
+     *  that will result as,<br>
      *  <br>
-     *  {<br>
-     *      "key1":"value3",<br>
-     *      "key2":"value2"<br>
-     *  }<br>
-     *
+     *  <pre>
+     *  [<br>
+     *      {"key":"value1","value":"value1"},<br>
+     *      {"key":"value1","value":"value1"},<br>
+     *      {"key":"value1","value":"value1"}<br>
+     *  ]<br>
+     *  </pre>
      *
      * @param queryString <a href="http://en.wikipedia.org/wiki/Query_string">Query string</a>
-     * @return The parsed query dictionary
+     * @return The parsed list of query pairs
      */
-    public Map<String, String> parse(final String queryString)
+    public List<UriQueryPair> parse(String queryString)
     {
-        Map<String, String> queryMap = new HashMap<>();
+        List<UriQueryPair> queryPairs = new ArrayList<>();
 
-        StringUtils.removeStart(queryString, "?");
-        String[] queryPairs = StringUtils.split(queryString, '&');
+        queryString = StringUtils.removeStart(queryString, "?");
+        String[] rawQueryPairs = StringUtils.split(queryString, '&');
 
-        if (queryPairs != null)
+        if (rawQueryPairs != null)
         {
-            for (String queryPair : queryPairs)
+            for (String rawQueryPair : rawQueryPairs)
             {
-                String[] queryPairParts = StringUtils.split(queryPair, '=');
+                String[] queryPairParts = StringUtils.split(rawQueryPair, '=');
 
                 if (queryPairParts != null) {
                     int queryPairPartsLength = queryPairParts.length;
@@ -50,29 +54,42 @@ public class UriQueryParser {
                         try {
                             String key = URLDecoder.decode(queryPairParts[0], "UTF-8");
                             String value = URLDecoder.decode(queryPairParts[1], "UTF-8");
+                            UriQueryPair queryPair = new UriQueryPair(key, value);
 
-                            queryMap.put(key, value);
+                            queryPairs.add(queryPair);
                         } catch (UnsupportedEncodingException e) { /* Ignored */ }
                     }
-                    else if (queryPairPartsLength == 1 && queryPair.endsWith("="))
+                    else if (queryPairPartsLength == 1)
                     {
-                        try
-                        {
-                            String key = URLDecoder.decode(queryPairParts[0], "UTF-8");
-                            String value = "";
+                        if (rawQueryPair.startsWith("=")) {
+                            try
+                            {
+                                String value = URLDecoder.decode(queryPairParts[0], "UTF-8");
+                                UriQueryPair queryPair = new UriQueryPair("", value);
 
-                            queryMap.put(key, value);
+                                queryPairs.add(queryPair);
+                            }
+                            catch (UnsupportedEncodingException e) { /* Ignored */ }
                         }
-                        catch (UnsupportedEncodingException e) { /* Ignored */ }
+                        else if (rawQueryPair.endsWith("=")) {
+                            try
+                            {
+                                String key = URLDecoder.decode(queryPairParts[0], "UTF-8");
+                                UriQueryPair queryPair = new UriQueryPair(key, "");
+
+                                queryPairs.add(queryPair);
+                            }
+                            catch (UnsupportedEncodingException e) { /* Ignored */ }
+                        }
                     }
                     else
                     {
-                        Log.e("Query parser", "Unable to split query parameter in parts: " + queryPair);
+                        Log.e("Query parser", "Unable to split query parameter in parts: " + rawQueryPair);
                     }
                 }
             }
         }
 
-        return queryMap;
+        return queryPairs;
     }
 }
