@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 
 import java.io.File;
+import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -149,7 +150,7 @@ public class Device
                 .append("; Android ")
                 .append(Build.VERSION.SDK_INT)
                 .append("; Scale/")
-                .append(String.format("%.2f", getDisplay().getMetrics().density))
+                .append(String.format(Locale.ENGLISH, "%.2f", getDisplay().getMetrics().density))
                 .append(")")
                 .toString();
     }
