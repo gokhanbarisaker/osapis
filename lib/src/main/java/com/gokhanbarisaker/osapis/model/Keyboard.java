@@ -6,8 +6,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
-import java.lang.ref.WeakReference;
-
 /**
  * Created by gokhanbarisaker on 11/19/14.
  */
