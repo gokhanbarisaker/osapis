@@ -33,3 +33,6 @@ Thumbs.db
 
 # Android Studio
 .idea
+
+# Credentials
+credentials.gradle
