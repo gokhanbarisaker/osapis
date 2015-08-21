@@ -28,5 +28,9 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:text="Camera" />
-
+    <Button
+        android:id="@+id/main_dialogfragmentbutton"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:text="Dialog fragment" />
 </LinearLayout>

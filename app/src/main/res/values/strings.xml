@@ -8,5 +8,6 @@
     <string name="title_activity_device_status">DeviceStatusActivity</string>
     <string name="title_activity_share">ShareActivity</string>
     <string name="title_activity_camera">CameraActivity</string>
+    <string name="title_activity_dialog_fragment">DialogFragmentActivity</string>
 
 </resources>

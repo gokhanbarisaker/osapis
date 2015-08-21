@@ -47,7 +47,7 @@
         <service
             android:name=".service.FlickrService"
             android:enabled="true"
-            android:exported="false">
+            android:exported="false" >
         </service>
 
         <activity
@@ -57,6 +57,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.gokhanbarisaker.osapissample.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.DialogFragmentActivity"
+            android:label="@string/title_activity_dialog_fragment" >
         </activity>
     </application>
 
